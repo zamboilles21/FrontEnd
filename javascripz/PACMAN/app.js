@@ -23,7 +23,50 @@ let tablematrix = [
 ];
 
 generateTable();
+pacman = document.querySelector('.pacman')
 
+document.addEventListener('keydown', (e) => {
+    var name = e.key;
+    var code = e.code;
+
+    switch (code) {
+        case "KeyA":
+        case "ArrowLeft":
+            balragomb()
+            pacman.classList.add('left')
+            pacman.classList.remove('up')
+            pacman.classList.remove('down')
+            pacman.classList.remove('right')
+            break;
+    
+        case "KeyS":
+        case "ArrowDown":
+            legomb()
+            pacman.classList.add('down')
+            pacman.classList.remove('up')
+            pacman.classList.remove('left')
+            pacman.classList.remove('right')
+            break;
+    
+        case "KeyD":
+        case "ArrowRight":
+            jobbragomb()
+            pacman.classList.add('right')
+            pacman.classList.remove('up')
+            pacman.classList.remove('down')
+            pacman.classList.remove('left')
+            break;
+    
+        case "KeyW":
+        case "ArrowUp":
+            felgomb()
+            pacman.classList.add('up')
+            pacman.classList.remove('left')
+            pacman.classList.remove('down')
+            pacman.classList.remove('right')
+            break;
+    }
+})
 function generateTable() {
     let classname = '';
     let gametable = document.querySelector('#gametable');
