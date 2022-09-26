@@ -17,7 +17,7 @@ let form = document.querySelector('form'),
     suly = form.suly,
     suly_kal = form.suly_kal,
     ping = form.ping,
-    ping_kal = form.suly_kal,
+    ping_kal = form.ping_kal,
     kutya = form.kutya,
     kutya_kal=form.kutya_kal,
     oszzes=form.oszzes,
@@ -78,5 +78,5 @@ kutya.addEventListener('change', ()=>{
     kutya_kal.value = Math.round((sportok[9].kcal/60) * kutya.value);
 });
 oszzes.addEventListener('change',()=>{
-    oszzes_kal.value=Math.round(fut.value+foci.value+tura.value+kutya.value+ping.value+suly.value+kajak.value+lovag.value+hegy.value+bringa.value)
+    oszzes_kal.value=Math.r(fut.value+foci.value+tura.value+kutya.value+ping.value+suly.value+kajak.value+lovag.value+hegy.value+bringa.value)
 })
