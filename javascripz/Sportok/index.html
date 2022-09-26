@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Kalória</title>
 </head>
 <body>
+    <form action="#">
     <table>
         <thead>
             <tr>
@@ -20,65 +22,73 @@
             <tr>
                 <td>Futás</td>
                 <td>680</td>
-                <td><input class="beker" id="fut" type="number" min="0"></td>
-                <td><input class="beker" id="fut_kal" type="number"></td>
+                <td><input class="beker" id="fut" name="fut" type="number" min="0"></td>
+                <td><input class="beker" id="fut_kal" name="fut_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Focizás</td>
                 <td>550</td>
-                <td><input class="beker" id="foci" type="number" min="0"></td>
-                <td><input class="beker" id="foci_kal" type="number"></td>
+                <td><input class="beker" id="foci" name="foci" type="number" min="0"></td>
+                <td><input class="beker" id="foci_kal" name="foci_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Bringázás</td>
                 <td>480</td>
-                <td><input class="beker" id="bringa" type="number" min="0"></td>
-                <td><input class="beker" id="bringa_kal" type="number"></td>
+                <td><input class="beker" id="bringa" name="bringa" type="number" min="0"></td>
+                <td><input class="beker" id="bringa_kal" name="bringa_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Hegymászás</td>
                 <td>420</td>
-                <td><input class="beker" id="hegy" type="number" min="0"></td>
-                <td><input class="beker" id="hegy_kal" type="number"></td>
+                <td><input class="beker" id="hegy" name="hegy" type="number" min="0"></td>
+                <td><input class="beker" id="hegy_kal" name="hegy_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Lovaglás</td>
                 <td>370</td>
-                <td><input class="beker" id="lovag" type="number" min="0"></td>
-                <td><input class="beker" id="lovag_kal" type="number"></td>
+                <td><input class="beker" id="lovag" name="lovag" type="number" min="0"></td>
+                <td><input class="beker" id="lovag_kal" name="lovag_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Túrázás</td>
                 <td>360</td>
-                <td><input class="beker" id="tura" type="number" min="0"></td>
-                <td><input class="beker" id="tura_kal" type="number"></td>
+                <td><input class="beker" id="tura" name="tura" type="number" min="0"></td>
+                <td><input class="beker" id="tura_kal" name="tura_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Kajakozás</td>
                 <td>340</td>
-                <td><input class="beker" id="kajak" type="number" min="0"></td>
-                <td><input class="beker" id="kajak_kal" type="number"></td>
+                <td><input class="beker" id="kajak" name="kajak" type="number" min="0"></td>
+                <td><input class="beker" id="kajak_kal" name="kajak_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Súlyzós edzés</td>
                 <td>320</td>
-                <td><input class="beker" id="suly" type="number" min="0"></td>
-                <td><input class="beker" id="suly_kal" type="number"></td>
+                <td><input class="beker" id="suly" name="suly" type="number" min="0"></td>
+                <td><input class="beker" id="suly_kal" name="suly_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Pingpongozás</td>
                 <td>270</td>
-                <td><input class="beker" id="ping" type="number" min="0"></td>
-                <td><input class="beker" id="ping_kal" type="number"></td>
+                <td><input class="beker" id="ping" name="ping" type="number" min="0"></td>
+                <td><input class="beker" id="ping_kal" name="ping_kal" type="number"></td>
             </tr>
             <tr>
                 <td>Kutyasétáltatás</td>
                 <td>200</td>
-                <td><input class="beker" id="kutya" type="number" min="0"></td>
-                <td><input class="beker" id="kutya_kal" type="number"></td>
+                <td><input class="beker" id="kutya" name="kutya" type="number" min="0"></td>
+                <td><input class="beker" id="kutya_kal" name="kutya_kal" type="number"></td>
+            </tr>
+            <tr>
+                <td>Összes</td>
+                <td></td>
+                <td><input class="beker" id="osszes_perc" name="osszes_perc" type="number"></td>
+                <td><input class="beker" id="osszes_kal" name="osszes_kal" type="number"></td>
             </tr>
         </tbody>
     </table>
+    <button type="reset" name="torol" id="torol" value="Töröl">Töröl</button>
+    </form>
             <script src="app.js"></script>
         </tbody>
         </tr>
