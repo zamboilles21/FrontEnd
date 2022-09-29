@@ -78,5 +78,5 @@ kutya.addEventListener('change', ()=>{
     kutya_kal.value = Math.round((sportok[9].kcal/60) * kutya.value);
 });
 oszzes.addEventListener('change',()=>{
-    oszzes_kal.value=Math.r(fut.value+foci.value+tura.value+kutya.value+ping.value+suly.value+kajak.value+lovag.value+hegy.value+bringa.value)
+    oszzes.value=Math.floor(fut.value+foci.value+tura.value+kutya.value+ping.value+suly.value+kajak.value+lovag.value+hegy.value+bringa.value)
 })
