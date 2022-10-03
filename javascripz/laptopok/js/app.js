@@ -1,8 +1,8 @@
 let laptopok=[];
 
 
-let data= async () =>{ return await fetch('../laptopok.json').then(res=>res.json()).then(x=>x); }
-async function load(){ laptopok = await getfile(); 
+let data = async () =>{ return await fetch('../adatok.json').then(r=>r.json()).then(x=>x); }
+async function load(){ laptops = await getfile(); }
 
     let table=document.querySelector('#mytable');
 
@@ -30,4 +30,4 @@ load();
 
 
 
-  
+
