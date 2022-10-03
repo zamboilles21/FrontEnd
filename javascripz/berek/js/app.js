@@ -1,6 +1,23 @@
 let berek=[];
 
+async function getfile(){
+    return await fetch('berek.txt').then(res=>res.text()).then(res=res.split('\n'));
+}
 
+async function load(){
+   let adatok = await getfile();
+
+    adatok.forEach(adat => {
+        let object={
+            "nev": adat.split(';')[0],
+            "nem": adat.split(';')[1],
+            "reszleg": adat.split(';')[2],
+            "belepes": adat.split(';')[3],
+            "ber": adat.split(';')[4]
+        }
+        berek.push(new Tberek(object));
+    
+    });
 
 let table=document.querySelector('#mytable');
 
@@ -22,8 +39,9 @@ berek.forEach(ber=>{
 table.appendChild(tr);
 
 });
+}
 load();
-    
+   
 
 
 
