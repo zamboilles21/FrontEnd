@@ -1,7 +1,7 @@
 let berek=[];
 
 async function getfile(){
-    return await fetch('berek.txt').then(res=>res.text()).then(res=res.split('\n'));
+    return await fetch('berek2020.txt').then(res=>res.text()).then(res=>res.split('\n'));
 }
 
 async function load(){
