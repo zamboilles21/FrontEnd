@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Telefonkönyv</title>
 </head>
 <body>
     <div class="container" ng-controller="mainCtrl">
@@ -15,38 +15,54 @@
         </header>
         <main>
             <section>
-                <h5>
-                    Új bejegyzés
-                </h5>
-                <form action="">
-                    <form>
-                        <div class="mb-3">
-                          <label for="nev" class="form-label">Név:</label>
-                          <input type="text" class="form-control" id="nev" ng-model="ujadat.nev" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                          <label for="telefonszam" class="form-label">Telefonszám:</label>
-                          <input type="text" class="form-control" id="telefonszam" ng-model="ujadat.telszam">
-                        </div>
-                        <div class="mb-3">
-                          <label for="kategoria" class="form-label">Kategória:</label>
-                          <select id="kategoria" class="form-select" ng-model="ujadat.kategoria">
-                              <option value="">Válasz....</option>
-                              <option value="{{kategoria}}" ng-repeat="kategoria in kategoriak">{{ kategoria }}</option>
-                          </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-1 mb-1" ng-click="hozzaadas()">Hozzáadás</button>
-                      </form>
+                <h5>Új bejegyzés</h5>
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" ng-show="message != null">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <form>
+                    <div class="mb-1">
+                        <label for="nev" class="form-label">Név:</label>
+                        <input type="text" class="form-control" id="nev" ng-model="ujadat.nev">
+                    </div>
+                    <div class="mb-1">
+                        <label for="telefonszam" class="form-label">Telefonszám:</label>
+                        <input type="text" class="form-control" id="telefonszam" ng-model="ujadat.telszam">
+                    </div>
+                    <div class="mb-1">
+                        <label for="kategoria" class="form-label">Kategória:</label>
+                        <select id="kategoria" class="form-select" ng-model="ujadat.kategoria">
+                          <option value="">Válasszon...</option>
+                          <option value="{{ kategoria }}" ng-repeat="kategoria in kategoriak">{{ kategoria }}</option>    
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-1 mb-1" ng-click="hozzaadas()">Hozzáadás</button>
                 </form>
             </section>
+            <hr>
             <section>
-                <h6>
-                    Telefonkonyv bejegyzés
-                </h6>
-                <p ng-if="adatok==null" class="text-muted">Jelenleg üres</p>
-                <ul>
-                    <li ng-repeat="adatok in adatok">{{ adat.nev }} {{ adat.telszam }}</li>
-                </ul>                
+                <h5>Telefonkönyv bejegyzések</h5>
+
+                <div class="input-group flex-nowrap pb-2">
+                    <span class="input-group-text" id="addon-wrapping">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="keresés..." ng-model="searchField">
+                </div>
+
+                <p ng-if="adatok.length == 0" class="text-muted">Jelenleg még nincs bejegyzés a telefonkönyvben!</p>
+
+                <div ng-repeat="kategoria in kategoriak" ng-if="adatok.length>0">
+                    <h6>{{ kategoria }}</h6>
+                    <ul>
+                        <li ng-repeat="adat in filtered = ( adatok | filter:searchField)" ng-if="adat.kategoria == $parent.kategoria">{{ adat.nev }} - <span><a href="">{{ adat.telszam }}</a></span> <i class="bi bi-trash-fill" ng-click="torles(adat.ID)"></i> </li>
+                    </ul>
+                </div>
+                <p>A telefonkönyvben {{ adatok.length }} db bejegyzés találhazó.</p>
+
             </section>
         </main>
         <footer>

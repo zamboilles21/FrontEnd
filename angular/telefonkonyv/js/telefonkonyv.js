@@ -8,9 +8,8 @@ app.controller('mainCtrl', function($scope){
     $scope.ujadat={};
 
     $scope.adatok=angular.fromJson(window.localStorage.getItem('telefonkonyv'));
-    if($scope.adatok==null){
-        $scope.adatok=[];
-    }
+    if($scope.adatok==null) $scope.adatok=[];
+    
     $scope.hozzaadas=function(){
         if ($scope.ujadat.nev == '' || $scope.ujadat.telszam == '' || $scope.ujadat.kategoria =='' ) {
             $scope.message='Nincs minden adat megadva';
@@ -20,6 +19,11 @@ app.controller('mainCtrl', function($scope){
             $scope.ujadat={};
         }
         
+    }
+    $scope.torles = function(ID) {
+        let idx = $scope.adatok.findIndex(item => item.ID == ID);
+        $scope.adatok.splice(idx, 1);
+        window.localStorage.setItem('telefonkonyv', angular.toJson($scope.adatok));
     }
 
 });

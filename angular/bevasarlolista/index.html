@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shoppingListAPP">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="container" ng-controller="mainCtrl">
+    <header>
+        <h1>{{ title }}</h1>
+    </header>
+    <main>
+        <form>
+                    <div class="mb-1">
+                        <label for="nev" class="form-label">Tétel neve:</label>
+                        <input type="text" class="form-control" id="nev" ng-model="ujadat.nev">
+                    </div>
+                    <div class="mb-1">
+                        <label for="mennyiseg" class="form-label">Mennyiség:</label>
+                        <input type="number" class="form-control" id="mennyiseg" ng-model="ujadat.mennyiseg">
+                    </div>
+                    <div class="mb-1">
+                        <label for="ar" class="form-label">ÁR:</label>
+                        <input type="text" class="form-control" id="ar" ng-model="ujadat.ar">
+                    </div>
+                    
+
+                    <button type="submit" class="btn btn-primary mt-1 mb-1" ng-click="hozzaadas()">Hozzáadás</button>
+                </form>
+                <section>
+                    <h5>A lista</h5>
+    
+                    <div class="input-group flex-nowrap pb-2">
+                        <span class="input-group-text" id="addon-wrapping">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="keresés..." ng-model="searchField">
+                    </div>
+                    <p>{{ujadat.mennnyiseg * ujadat.ar}}</p>
+                    <p ng-if="adatok.length == 0" class="text-muted">Jelenleg még nincs bejegyzés</p>
+    
+                    <div ng-repeat="nevek in nev" ng-if="adatok.length>0">
+                        <h6>{{ ujadat.nev }}</h6>
+                        <ul>
+                            <li ng-repeat="adat in filtered = ( adatok | filter:searchField)" ng-if="adat.nev == $parent.nev">{{ adat.nev }} - <span><a href="">{{ adat.mennyiseg }}</a></span> <i class="bi bi-trash-fill" ng-click="torles(adat.ID)"></i> </li>
+                        </ul>
+                    </div>
+    </main>
+    <footer>
+        {{ company }} - {{ author }}
+    </footer>
+</div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
