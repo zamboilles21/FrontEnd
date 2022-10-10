@@ -4,7 +4,7 @@ app.controller('mainCtrl', function($scope){
     $scope.title='Ez az első!';
     $scope.company='Baja Türr'
     $scope.author='ZI';
-
+   
     $scope.links=[
         {
             name:"főoldal",
