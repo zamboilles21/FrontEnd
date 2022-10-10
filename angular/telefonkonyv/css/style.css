@@ -1,5 +1,19 @@
 body{
-    background-color: palegoldenrod;
+    background-color: gold;
     padding: auto;
     margin: auto;
+}
+.container{
+    background-color: darksalmon;
+    box-shadow: 3px 3px 10px gainsboro;
+
+}
+header{
+    padding: 20px;
+    text-align: center;
+}
+footer{
+    padding: 10px;
+    text-align: center;
+    font-size: 80px;
 }

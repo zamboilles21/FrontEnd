@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu" ng-app="phoneBookApp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container" ng-controller="mainCtrl">
+        <header>
+            <h3>{{ title }}</h3>
+        </header>
+        <main>
+            <section>
+                <h5>
+                    Új bejegyzés
+                </h5>
+                <form action="">
+                    <form>
+                        <div class="mb-3">
+                          <label for="nev" class="form-label">Név:</label>
+                          <input type="text" class="form-control" id="nev" ng-model="ujadat.nev" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                          <label for="telefonszam" class="form-label">Telefonszám:</label>
+                          <input type="text" class="form-control" id="telefonszam" ng-model="ujadat.telszam">
+                        </div>
+                        <div class="mb-3">
+                          <label for="kategoria" class="form-label">Kategória:</label>
+                          <select id="kategoria" class="form-select" ng-model="ujadat.kategoria">
+                              <option value="">Válasz....</option>
+                              <option value="{{kategoria}}" ng-repeat="kategoria in kategoriak">{{ kategoria }}</option>
+                          </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-1 mb-1" ng-click="hozzaadas()">Hozzáadás</button>
+                      </form>
+                </form>
+            </section>
+            <section>
+                <h6>
+                    Telefonkonyv bejegyzés
+                </h6>
+                <p ng-if="adatok==null" class="text-muted">Jelenleg üres</p>
+                <ul>
+                    <li ng-repeat="adatok in adatok">{{ adat.nev }} {{ adat.telszam }}</li>
+                </ul>                
+            </section>
+        </main>
+        <footer>
+            {{ company }} - {{ author }}
+        </footer>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/telefonkonyv.js"></script>
 </body>
 </html>
