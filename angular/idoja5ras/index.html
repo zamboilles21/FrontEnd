@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wheatherApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Angular</title>
+</head>
+<body>
+    <div class="container" ng-controller="mainCtrl">
+        <header>
+            <h3>{{ title }}</h3>
+        </header>
+        <main>
+            <section>
+                <h5>Új bejegyzés</h5>
+                <form>
+                    <div class="mb-1">
+                        <label for="nap" class="form-label">Nap:</label>
+                        <input type="date" class="form-control" id="nap" ng-model="ujadat.nap">
+                    </div>
+                    <div class="mb-1">
+                        <label for="min" class="form-label">Min:</label>
+                        <input type="text" class="form-control" id="min" ng-model="ujadat.min">
+                    </div>
+                    <div class="mb-1">
+                        <label for="max" class="form-label">Max:</label>
+                        <input type="text" class="form-control" id="max" ng-model="ujadat.max">
+                    </div>
+                    <div class="mb-1">
+                        <label for="kategoria" class="form-label">Kategória:</label>
+                        <select id="kategoria" class="form-select" ng-model="ujadat.kategoria">
+                          <option value="">Válasszon...</option>
+                          <option value="{{ kategoria }}" ng-repeat="kategoria in kategoriak">{{ kategoria }}</option>    
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-1 mb-1" ng-click="hozzaadas()">Hozzáadás</button>
+                </form>
+            </section>
+            <h5>Időjárás bejegyzések</h5>
+
+                <div class="input-group flex-nowrap pb-2">
+                    <span class="input-group-text" id="addon-wrapping">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="keresés..." ng-model="searchField">
+                </div>
+
+                <p ng-if="adatok.length == 0" class="text-muted">Jelenleg még nincs bejegyzés a telefonkönyvben!</p>
+            <div ng-repeat="kategoria in kategoriak" ng-if="adatok.length>0">
+                <h6>{{ kategoria }}</h6>
+                <ul>
+                    <li ng-repeat="adat in filtered = ( adatok | filter:searchField)" ng-if="adat.kategoria == $parent.kategoria">{{ adat.nap }} - <span><a href="">{{ adat.min }}</a></span> <span><a href="">{{ adat.max }}</a></span> <i class="bi bi-trash-fill" ng-click="torles(adat.ID)"></i> </li>
+                </ul>
+            </div>
+            <footer>
+                {{ company }} - {{ author }}
+            </footer>
+        </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
