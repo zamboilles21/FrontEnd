@@ -19,7 +19,7 @@
                 <form>
                     <div class="mb-1">
                         <label for="nap" class="form-label">Nap:</label>
-                        <input type="date" class="form-control" id="nap" ng-model="ujadat.nap">
+                        <input type="datetime-local" class="form-control" id="nap" ng-model="ujadat.nap">
                     </div>
                     <div class="mb-1">
                         <label for="min" class="form-label">Min:</label>
@@ -49,7 +49,7 @@
                     <input type="text" class="form-control" placeholder="keresés..." ng-model="searchField">
                 </div>
 
-                <p ng-if="adatok.length == 0" class="text-muted">Jelenleg még nincs bejegyzés a telefonkönyvben!</p>
+                <p ng-if="adatok.length == 0" class="text-muted">Jelenleg még nincs bejegyzés!</p>
             <div ng-repeat="kategoria in kategoriak" ng-if="adatok.length>0">
                 <h6>{{ kategoria }}</h6>
                 <ul>
