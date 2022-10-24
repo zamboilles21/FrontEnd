@@ -62,7 +62,11 @@ app.controller('mainCtrl', function($scope) {
             $scope.ujadat = {};
         }
     }
-
+    $scope.torles = function(ID) {
+        let idx = $scope.adatok.findIndex(item => item.ID == ID);
+        $scope.adatok.splice(idx, 1);
+        window.localStorage.setItem('peldaApp', angular.toJson($scope.adatok))
+    }
     $scope.statusChange = function() {
         window.localStorage.setItem('adatok', angular.toJson($scope.adatok));
     }
