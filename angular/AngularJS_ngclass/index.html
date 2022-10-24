@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="peldaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS ngClass példa</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <div class="container" ng-controller="mainCtrl">
+
+        <h3>AngularJS ngClass példa</h3>
+        <hr>
+        <div class="row">
+            <div class="input-group-text">
+                <input class="form-check-input" type="checkbox" value="" id="" ng-model="hideInactive" ng-checked="hideInactive">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Csak aktív
+                </label>
+              </div>
+              
+        </div>
+        <table class="table table-hover table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Név</th>
+                    <th>E-mail cím</th>
+                    <th>Kor</th>
+                    <th>Foglalkozás</th>
+                    <th>Státusz</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="adat in adatok" ng-class="{inactive: adat.statusz==false}" ng-hide="adat.statusz==false && hideInactive ">
+                    <td>{{ $index+1 }}.</td>
+                    <td>{{ adat.nev }}</td>
+                    <td>{{ adat.email }}</td>
+                    <td>{{ adat.kor }}</td>
+                    <td>{{ adat.foglalkozas }}</td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" ng-model="adat.statusz" ng-checked="adat.statusz==true" ng-change="statusChange()">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">Összesen: {{ adatok.length }} rekord</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

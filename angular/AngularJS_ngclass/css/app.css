@@ -1,0 +1,49 @@
+body {
+    background-color: khaki;
+}
+
+.container {
+    background-color: gainsboro;
+    box-shadow: 10px 10px 10px palegreen;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 80%;
+}
+
+ul {
+    margin: 10px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li {
+    border-bottom: 6px dashed chartreuse;
+    padding: 8px;
+    display: block;
+}
+
+ul li:first-child {
+    border-top: 3px dashed firebrick;
+}
+
+ul li span {
+    float: right;
+}
+
+ul li span i {
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.inactive>td {
+    color:brown !important;
+    text-decoration: line-through !important;
+}
