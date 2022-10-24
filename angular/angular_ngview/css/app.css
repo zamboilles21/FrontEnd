@@ -1,0 +1,61 @@
+body {
+    background-color: cadetblue;
+}
+
+.container {
+    background-color: lightblue;
+    box-shadow: 0 0 10px gray;
+    padding: auto;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background-color: darkblue;
+    text-shadow: 0 0 3px whitesmoke;
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 80%;
+    background-color: darkorange;
+}
+
+ul {
+    margin: 10px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li {
+    border-bottom: 1px dashed silver;
+    padding: 8px;
+    display: block;
+    background-color: aqua;
+}
+
+ul li:first-child {
+    border-top: 1px dashed silver;
+    background-color: red;
+}
+
+ul li span {
+    float: right;
+    background-color: seagreen;
+}
+
+ul li span i {
+    padding-left: 15px;
+    cursor: pointer;
+    background-color: darkmagenta;
+}
+
+.inactive>td {
+    color: silver !important;
+    text-decoration: line-through !important;
+}
+.fade.ng-hide {
+    transition:0.5s linear all;
+    opacity:0;
+  }
