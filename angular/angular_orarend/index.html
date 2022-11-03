@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="orarendAPP">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body ng-controller="mainCtrl" ng-cloak>
+    <div class="container">
+        <header>{{ title }}</header>
+        <main>
+            <aside>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Órarend szerk
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body row">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Válassz...</option>
+                                <option value="{{ day }}" ng-repeat="day in days">{{ day }}</option>
+                                
+                              </select>
+                              <label for="day">Tanitási nap:</label>
+                        </div>
+
+                        <div class="accordion-body row">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Válassz...</option>
+                                <option value="{{ hour }}" ng-repeat="hour in hours">{{ hour }}.óra</option>
+                                
+                              </select>
+                              <label for="day">Tanitasi óra:</label>
+                        </div>
+                        <div class="accordion-body row">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Válassz...</option>
+                                <option value="{{ subjects }}" ng-repeat="subject in subjects">{{ subject.name }} {{ subject.teacher }} </option>
+                                
+                              </select>
+                              <label for="day">Tantargy</label>
+                        </div>
+                        <button>Hozzáadas</button>
+                      </div>
+                      
+                    </div>
+                </div>
+            </aside>
+            <section>
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-center f_cell">Óra</th>
+                            <th class="text-center d_cell" ng-repeat="day in days">{{ day }}</th>
+                            
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="hour in hours">
+                            <td class="text-center">{{ hour }}.</td>
+                            <td ng-repeat="day in days">
+                                <div ng-if="timetable.day==$index && timetable.hour==$parent.$index"> 
+                                    {{ timetable.subject.name}}
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+            </section>
+        </main>
+        <footer>
+            {{ company }} - {{ author }}
+        </footer>
+    </div>
+
+
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
