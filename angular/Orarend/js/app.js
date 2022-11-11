@@ -1,6 +1,6 @@
 var app = new angular.module('orarendApp', []);
 
-app.controller('mainCtrl', function($scope) {
+app.controller('mainCtrl', function($scope,$window,$timeout) {
     $scope.title = 'Órarend App';
     $scope.company = 'Bajai SZC Türr István Technikum';
     $scope.author = '2/14. szft';
@@ -112,5 +112,26 @@ app.controller('mainCtrl', function($scope) {
             $scope.timetables.splice(idx, 1);
             localStorage.setItem('timetable', angular.toJson($scope.timetables));
         }
+    }
+    $scope.printTable=function()
+    {
+        var contents=document.querySelector('#printArea').innerHTML;
+        var body=document.getElementById('body')[0];
+        var frame=document.createElement('iframe');
+        frame.name='printFrame';
+        frame.setAttribute("style","position: absolute; top: -410000000");
+        body.appendChild(frame);
+        var frameDoc=frame.contentWindow;
+        frameDoc.document.open();
+        frameDoc.document.write('<html><head><title>Órarend<title><head><body>');
+        frameDoc.document.write(contents);
+        frameDoc.document.write("<body></html>");
+        frameDoc.document.close();
+
+        $window.setTimeout(() => {
+                $window.frames['printFrame'].focus();
+                $window.frames['printFrame'].print();
+                body.removeChild(frame);
+        }, 500);
     }
 })

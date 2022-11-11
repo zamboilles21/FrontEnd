@@ -96,7 +96,71 @@
                         </tr>
                     </tbody>
                 </table>
+                <button class="btn btn-primary" ng-click="printTable()">Nyomtatás</button>
             </section>
+
+            <!-- print -->
+            <style>
+                .subjectCell {
+                        width: 100%;
+                        height: 30px;
+    
+                        flex-grow: 1;
+                            }
+
+                .subjectCell td {
+                        padding: 10px;
+                            }
+                            .f_cell {
+                                width: 5% !important;
+                            }
+
+                            .d_cell {
+                                width: 19% !important;
+                            }
+
+                            .ttday {
+                                font-size: 70%;
+                                text-align: center;
+                                height: auto;
+                                vertical-align: middle;
+                                position: relative;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                                display: flex;
+                                flex-direction: column;
+                            }
+
+            </style>
+            <section style="display:none" id="printArea">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center f_cell">#</th>
+                        <th class="text-center d_cell" ng-repeat="day in days">{{ day }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="hour in hours">
+                        <td class="text-center align-middle">{{ hour.nr }}. <br><small>{{hour.start}} - {{ hour.end }} </small></td>
+                        <td ng-repeat="day in days">
+                            <div ng-repeat="timetable in timetables" ng-if="timetable.day==day && timetable.hour==hour.nr" class="ttday">
+                                <table class="subjectCell">
+                                    <tr>
+                                        <td class="text-start align-bottom">{{ timetable.room }}</td>
+                                        <td class="text-center align-middle"><strong>{{ timetable.subjectName }}</strong></td>
+                                        <td class="text-end align-bottom">{{ timetable.teacher }}</td>
+                                    </tr>
+                                </table>
+
+                                
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
         </main>
         <footer>{{ company }} - {{ author }}</footer>
     </div>
