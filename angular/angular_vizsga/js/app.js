@@ -18,9 +18,29 @@ app.run(function($rootScope) {
             name: 'Kapcsolat',
             url: '/contacts'
         },
+        {
+            Name:'Vizsgabejelentés',
+            url:'/vizsgabejelentes'
+        },
+        {
+            Name:'Vizsgajelentkezés',
+            url:'/vizsgajelentkezes'
+        }
         
        
         
+    ];
+    
+    $rootScope.hours = [
+        { nr: 0, start: '07:15', end: '07:55' },
+        { nr: 1, start: '08:00', end: '08:45' },
+        { nr: 2, start: '08:55', end: '09:40' },
+        { nr: 3, start: '09:50', end: '10:35' },
+        { nr: 4, start: '10:50', end: '11:35' },
+        { nr: 5, start: '11:45', end: '12:30' },
+        { nr: 6, start: '12:40', end: '13:25' },
+        { nr: 7, start: '13:30', end: '14:05' },
+        { nr: 8, start: '14:06', end: '15:25' }
     ];
     $rootScope.ujadat={};
 
@@ -53,6 +73,14 @@ app.config(function($routeProvider) {
         .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'loginCtrl'
+        })
+        .when('/vizsgabejelentes', {
+            templateUrl: 'views/Vizsgabejelentes.html',
+            controller: 'bejentesCtrl'
+        })
+        .when('/vizsgajelentkezes', {
+            templateUrl: 'views/vizsgajelentkezes.html',
+            controller: 'jelentkezesCtrl'
         })
         .otherwise('/home')
 });
