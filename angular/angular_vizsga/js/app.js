@@ -84,5 +84,7 @@ app.config(function($routeProvider) {
         })
         .otherwise('/home')
 });
-
+function myFunction() {
+    alert("Köszönjük a jelentkezését!");
+  }
 
