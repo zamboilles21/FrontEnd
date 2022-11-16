@@ -76,7 +76,7 @@ app.config(function($routeProvider) {
         })
         .when('/vizsgabejelentes', {
             templateUrl: 'views/Vizsgabejelentes.html',
-            controller: 'bejentesCtrl'
+            controller: 'bejelentesCtrl'
         })
         .when('/vizsgajelentkezes', {
             templateUrl: 'views/vizsgajelentkezes.html',
