@@ -1,0 +1,41 @@
+<h3 class="mt-3">Kosárban lévő tételek</h3>
+<hr>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="table-dark">
+            <th class="text-center">Nr.</th>
+            <th>Pizza neve:</th>
+            <th class="text-end">Egységár:</th>
+            <th class=" text-end ">Mennyiség:</th>
+            <th class="text-end ">Összesen:</th>
+            <th class="text-end">Törlés</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr ng-repeat="tetel in tetelek">
+            <td class="text-center ">{{ $index + 1 }}.</td>
+            <td>{{ tetel.name }}</td>
+            <td class="text-end">{{ tetel.price | number: decimals }} {{ penznem }}</td>
+            <td class="text-end">{{ tetel.amount | number: decimals }} db</td>
+            <td class="text-end">{{ tetel.summary | number: decimals }} {{ penznem }}</td>
+            <td class="text-end"><button class="btn btn-danger btn-sm">
+                <i class="bi bi-trash-fill" title="Rendelés törlése" ng-click="deleteOrder(tetel.ID)"></i>
+            </button></td>
+        </tr>
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-end">Összesen: <strong>{{ tetelek.length }}</strong> tétel</td>
+
+            <td class="text-end">Összesen: <strong>{{ summary | number: decimal}}</strong> {{ penznem }}</td>
+        </tr>
+    </tfoot>
+</table>
+<button class="btn btn-danger btn-sm">
+    <i class="text-center" title="Minden törlése" ng-click="deleteAll()">Minden törlése</i>
+</button>
+<button class="btn btn-primary btn-sm">
+    <i class="text-center" title="Rendelés" ng-click="deleteAll">Rendelés</i>
+</button>
