@@ -87,11 +87,15 @@ app.factory('DB', function($http, $q) {
             return deferred.promise;
         },
 
-        delete: function(tablename, id) {
+        delete: function(tablename, field, value) {
+            if (value == null) {
+                value = field;
+                field = 'ID';
+            }
             var deferred = $q.defer();
             $http({
                 method: 'DELETE',
-                url: url + '/' + tablename + '/' + id,
+                url: url + '/' + tablename + '/' + field + '/' + value,
                 headers: {
                     'Authorization': token
                 }

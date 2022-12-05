@@ -9,17 +9,39 @@ app.controller('kosarCtrl', function($scope, $rootScope, DB) {
         });
     });
 
-    $scope.deleteOrder = function(id) {
-        $scope.modal = {
-            Title: 'Rendelés törlése',
-            Btn: 'Töröl',
-            BtnColor: 'danger',
-            mode: 3,
-            pizzaID: id
+
+    $scope.ordering = function() {
+
+        let data = {
+            userID: $rootScope.loggedUser.ID,
+            userName: $rootScope.loggedUser.name,
+            userAddress: $rootScope.loggedUser.address,
+            userPhone: $rootScope.loggedUser.phone,
+            summary: $scope.summary
         }
-        DB.delete('carts', id).then(function(res) {
-            $scope.pizza = res.data[0];
+
+        DB.insert('orders', data).then(function(res) {
+            if (res.data.affectedRows != 0) {
+                let orderID = res.data.insertId;
+
+                $scope.tetelek.forEach(tetel => {
+                    data = {
+                        orderID: orderID,
+                        pizzaID: tetel.pizzaID,
+                        pizzaName: tetel.name,
+                        amount: tetel.amount,
+                        price: tetel.price
+                    }
+                    DB.insert('orderItems', data);
+                });
+
+                DB.delete('carts', 'userID', $rootScope.loggedUser.ID).then(function() {
+                    alert("A megrendelést rögzítettük!");
+                    $scope.tetelek = [];
+                    $scope.summary = 0;
+                    $rootScope.itemsInCart = 0;
+                });
+            }
         });
     }
-   
 });
