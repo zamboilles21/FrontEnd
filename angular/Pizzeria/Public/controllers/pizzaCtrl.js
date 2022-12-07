@@ -1,4 +1,4 @@
-app.controller('pizzaCtrl', function($scope, DB, $rootScope) {
+app.controller('pizzaCtrl', function($scope, DB, $rootScope, fileUpload) {
 
     $scope.pizzak = [];
     $scope.pizza = {};
@@ -62,24 +62,58 @@ app.controller('pizzaCtrl', function($scope, DB, $rootScope) {
                                 alert("Van már ilyen nevű pizza felvéve!");
                             } else {
 
-                                let data = {
-                                    name: $scope.pizza.name,
-                                    price: $scope.pizza.price,
-                                    kcal: $scope.pizza.kcal,
-                                    description: $scope.pizza.description,
-                                    filename: '' //TODO: képfeltöltés 	
+                                let file = $scope.pizza.file;
+                                let filename = '';
+                                let data = {};
+
+                                if (file != null) {
+                                    let uploadurl = 'http://localhost:3000/fileUpload';
+
+                                    fileUpload.uploadFileToUrl(file, uploadurl).then(function(res) {
+
+                                        filename = res.data.filename;
+                                        data = {
+                                            name: $scope.pizza.name,
+                                            price: $scope.pizza.price,
+                                            kcal: $scope.pizza.kcal,
+                                            description: $scope.pizza.description,
+                                            filename: filename
+                                        }
+
+                                        DB.insert('pizzas', data).then(function(res) {
+                                            if (res.data.affectedRows != 0) {
+                                                alert('A pizza felvéve!');
+                                                $scope.pizza.ID = res.data.insertId;
+                                                $scope.pizzak.push($scope.pizza);
+                                                $scope.pizza = {};
+                                            } else {
+                                                alert('Váratlan hiba történt az adatbázis művelet során!');
+                                            }
+                                        });
+
+                                    });
+
+                                } else {
+                                    data = {
+                                        name: $scope.pizza.name,
+                                        price: $scope.pizza.price,
+                                        kcal: $scope.pizza.kcal,
+                                        description: $scope.pizza.description,
+                                        filename: filename
+                                    }
+
+                                    DB.insert('pizzas', data).then(function(res) {
+                                        if (res.data.affectedRows != 0) {
+                                            alert('A pizza felvéve!');
+                                            $scope.pizza.ID = res.data.insertId;
+                                            $scope.pizzak.push($scope.pizza);
+                                            $scope.pizza = {};
+                                        } else {
+                                            alert('Váratlan hiba történt az adatbázis művelet során!');
+                                        }
+                                    });
                                 }
 
-                                DB.insert('pizzas', data).then(function(res) {
-                                    if (res.data.affectedRows != 0) {
-                                        alert('A pizza felvéve!');
-                                        $scope.pizza.ID = res.data.insertId;
-                                        $scope.pizzak.push($scope.pizza);
-                                        $scope.pizza = {};
-                                    } else {
-                                        alert('Váratlan hiba történt az adatbázis művelet során!');
-                                    }
-                                });
                             }
                         });
                     }
@@ -142,22 +176,6 @@ app.controller('pizzaCtrl', function($scope, DB, $rootScope) {
                     });
                     break;
                 }
-            case 3:
-                // DELETE TETEL
-                {
-                    DB.delete('carts', $scope.modal.pizzaID).then(function(res) {
-                        if (res.data.affectedRows != 0) {
-                            alert('A pizza törölve!');
-                            let idx = $scope.pizzak.findIndex(item => item.ID === $scope.pizza.ID);
-                            $scope.pizzak.splice(idx, 1);
-                            $scope.pizza = {};
-                            $('#modalWindow').modal('hide');
-                        } else {
-                            alert('Váratlan hiba történt az adatbázis művelet során!');
-                        }
-                    });
-                    break;
-                }
         }
     }
 
@@ -192,6 +210,5 @@ app.controller('pizzaCtrl', function($scope, DB, $rootScope) {
                 });
             }
         });
-        
     }
 });

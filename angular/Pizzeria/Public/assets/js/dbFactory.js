@@ -122,7 +122,6 @@ app.factory('DB', function($http, $q) {
             });
             return deferred.promise;
         }
-
     }
 
 });
